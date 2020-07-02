@@ -11,7 +11,7 @@
           cd = document.getElementById("code"),
           chart;
 
-        (btn.onclick = function () {
+        function updateFlowchart() {
           var code = cd.value;
 
           if (chart) {
@@ -20,7 +20,11 @@
 
           chart = flowchart.parse(code);
           chart.drawSVG("canvas");
-        })();
+        }
+
+        btn.onclick = updateFlowchart;
+        cd.oninput = updateFlowchart;
+        updateFlowchart();
       };
     </script>
   </head>
