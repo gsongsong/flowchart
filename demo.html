@@ -3,6 +3,12 @@
   <head>
     <meta charset="utf-8" />
     <title>flowchart.js · Playground</title>
+    <style>
+      .flex-container {
+        display: flex;
+        flex-wrap: wrap;
+      }
+    </style>
     <script src="http://cdnjs.cloudflare.com/ajax/libs/raphael/2.3.0/raphael.min.js"></script>
     <script src="http://flowchart.js.org/flowchart-latest.js"></script>
     <script>
@@ -29,8 +35,9 @@
     </script>
   </head>
   <body>
-    <div>
-      <textarea id="code" style="width: 100%;" rows="11">
+    <div class="flex-container">
+      <div>
+        <textarea id="code" cols="80" rows="24" style="font-size: large;">
 st=>start: Start|past:>http://www.google.com[blank]
 e=>end: End:>http://www.google.com
 op1=>operation: My Operation|past:$myFunction
@@ -52,9 +59,10 @@ para(path1, bottom)->sub1(left)->op1
 para(path2, right)->op2->e
 
 st@>op1({"stroke":"Red"})@>cond({"stroke":"Red","stroke-width":6,"arrow-end":"classic-wide-long"})@>c2({"stroke":"Red"})@>op2({"stroke":"Red"})@>e({"stroke":"Red"})</textarea
-      >
+        >
+        <div><button id="run" type="button">Run</button></div>
+      </div>
+      <div id="canvas"></div>
     </div>
-    <div><button id="run" type="button">Run</button></div>
-    <div id="canvas"></div>
   </body>
 </html>
