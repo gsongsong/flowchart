@@ -13,18 +13,18 @@
     <script src="https://flowchart.js.org/flowchart-latest.js"></script>
     <script>
       window.onload = function () {
-        var btn = document.getElementById("run"),
-          cd = document.getElementById("code"),
-          chart;
+        var btn = document.getElementById("run");
+        var cd = document.getElementById("code")
+        var canvas= document.getElementById("canvas");
 
         function updateFlowchart() {
           var code = cd.value;
-
-          if (chart) {
-            chart.clean();
+          try {
+            var chart = flowchart.parse(code);
+          } catch (e) {
+            throw e;
           }
-
-          chart = flowchart.parse(code);
+          canvas.innerHTML = "";
           chart.drawSVG("canvas");
         }
 
