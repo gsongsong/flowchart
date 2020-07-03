@@ -8,6 +8,9 @@
         display: flex;
         flex-wrap: wrap;
       }
+      #error {
+        color: #f00;
+      }
     </style>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/raphael/2.3.0/raphael.min.js"></script>
     <script src="https://flowchart.js.org/flowchart-latest.js"></script>
@@ -16,15 +19,18 @@
         var btn = document.getElementById("run");
         var cd = document.getElementById("code")
         var canvas= document.getElementById("canvas");
+        var error = document.getElementById("error");
 
         function updateFlowchart() {
           var code = cd.value;
           try {
             var chart = flowchart.parse(code);
           } catch (e) {
+            error.innerText = e;
             throw e;
           }
           canvas.innerHTML = "";
+          error.innerText = "";
           chart.drawSVG("canvas");
         }
 
@@ -60,7 +66,10 @@ para(path2, right)->op2->e
 
 st@>op1({"stroke":"Red"})@>cond({"stroke":"Red","stroke-width":6,"arrow-end":"classic-wide-long"})@>c2({"stroke":"Red"})@>op2({"stroke":"Red"})@>e({"stroke":"Red"})</textarea
         >
-        <div><button id="run" type="button">Run</button></div>
+        <div>
+          <button id="run" type="button">Run</button>
+          <span id="error"></span>
+        </div>
       </div>
       <div id="canvas"></div>
     </div>
